@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<!-- 
+   Dies ist ein Artikel der Nachrichten-Website mit einer kleinen Navigationsleiste am linken Seitenrand.
+   
+   Erstellt von Vitus Jonassen Wittke
+    -->
+<html>
+   <head>
+      <title>Fotos teilen</title>
+      <!-- Festlegen des Charsets auf UTF-8 -->
+      <meta charset="utf-8" />
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="/stylesheets/Ajax.js" type="text/javascript"></script>
+      <script src="/stylesheets/materialize/js/materialize.min.js" type="text/javascript"></script>
+      
+<link type="text/css" rel="stylesheet" href="/stylesheets/screen.css" />
+      <link rel="stylesheet" type="text/css" href="/stylesheets/materialize/css/materialize.min.css" media="screen"/>
+   </head>
+   <body>
+      <header>
+         <nav>
+            <div class="nav-wrapper">
+               <div class="brand-logo" id="title">Laden Sie Ihre Fotos hoch!</div>
+               <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="#modal1" class="waves-effect waves-light btn modal-trigger">Foto hinzufügen</a></li>
+               </ul>
+            </div>
+         </nav>
+      </header>
+      <main>
+         <div id="displayArea" class="container row">
+		         {% if results %}
+            {% for row in results %}
+            <div class="picture card-panel hoverable col s3">
+				
+               <img src="{{ row.pictureURL }}" class="materialboxed" data-caption="{{ row.bildU }}" />
+			   <a href="/delete/{{ row.idpictures }}" class="waves-effect waves-light btn delbtn">X</a>
+            </div>
+            {% endfor %}
+        {% endif %}
+         </div>
+      </main>
+      <footer class="page-footer">
+         <div>bala</div>
+      </footer>
+      <div id="modal1" class="modal no-autoinit">
+         <div class="modal-content" id="modal-content">
+            <h4 id="modalHeader">Laden Sie hier Ihr Foto hoch!</h4>
+			<img id="preview" />
+			<div id="formcontainer">
+            <form id="uploadForm" action="/" method="post" enctype="multipart/form-data">
+               <input id="datei" name="datei" type="file" accept="image/jpeg,image/png"/>
+               <input id="bildunterschrift" name="bildunterschrift" type="text" cols="60"/>
+               <input type="submit" value="Upload" class="submit waves-effect waves-light btn" />
+            </form>
+			</div>
+            
+         </div>
+      </div>
+   </body>
+</html>
