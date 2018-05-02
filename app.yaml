@@ -2,9 +2,6 @@ runtime: php55
 api_version: 1
 threadsafe: false
 
-runtime_config:
-  document_root: web
-
 handlers:
 - url: /stylesheets
   static_dir: stylesheets
@@ -14,14 +11,6 @@ handlers:
 
 - url: /.*
   script: index.php
-
-- url: /(.+\.(gif|png|jpg))$
-  static_files: \1
-  upload: .+\.(gif|png|jpg)$
-  application_readable: true
-
-- url: /(.+\.php)$
-  script: \1
 
 env_variables:
   MYSQL_DSN: mysql:unix_socket=/cloudsql/assistenzsose2018example:europe-west3:exampledb;dbname=pictures
